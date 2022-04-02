@@ -6,7 +6,8 @@ public class BeatManager : MonoBehaviour
 {
     public static BeatManager instance;
     //länge eines Tacktes in S
-    public float beatLength = 1;
+    [Range(0,500)]
+    public float BPM = 1;
     float startingTime;
     float lastBeatTime;
 
@@ -45,8 +46,8 @@ public class BeatManager : MonoBehaviour
     {
         float currentTime = Time.time - startingTime;
         float pastTimeSinceLastBeat = currentTime - lastBeatTime;
-        int beats = Mathf.FloorToInt(pastTimeSinceLastBeat / beatLength);
-        lastBeatTime += beats * beatLength;
+        int beats = Mathf.FloorToInt(pastTimeSinceLastBeat / BPM);
+        lastBeatTime += beats * BPM;
 
         for (int i = 0; i < beats; i++)
         {
@@ -57,4 +58,5 @@ public class BeatManager : MonoBehaviour
     {
         Debug.Log("Beat");
     }
+
 }
