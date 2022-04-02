@@ -152,7 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a5fa017c37a034495236ffbbecdeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 117
+  BPM: 120
+  isOnBeatTolerance: 0.555
+  gapBetweenSteps: 3
 --- !u!4 &365945297
 Transform:
   m_ObjectHideFlags: 0

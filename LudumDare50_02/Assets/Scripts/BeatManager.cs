@@ -12,8 +12,10 @@ public class BeatManager : MonoBehaviour
     float startingTime;
     float lastBeatTime;
     [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
-    [SerializeField] [Range(0, 10)] int PauseBetweenSteps = 2;
-
+    [SerializeField] [Range(0, 10)] int gapBetweenSteps = 2;
+    int nextBeatWithStep =1;
+    int beats;
+    
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class BeatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsOnBeat();
+        IsStepOnBeat();
         CheckForBeat();
     }
 
@@ -61,23 +63,35 @@ public class BeatManager : MonoBehaviour
     void OnBeat()
     {
         Debug.Log("Beat");
+        beats += 1;
+        if (beats == nextBeatWithStep) 
+        {
+            nextBeatWithStep += gapBetweenSteps;
+        }
     }
 
 
 
-
-
-    public bool IsOnBeat() 
+    public bool IsStepOnBeat() 
     {
-        float targetBeatTime = lastBeatTime;
+        float targetBeatTime = startingTime+(nextBeatWithStep*beatLength);
+        return IsOnBeat(targetBeatTime);
+
+    }
+
+    public bool IsOnBeat(float targetBeatTime) 
+    {
+       
         float currentTime = Time.time - startingTime;
-        if (currentTime <= targetBeatTime + isOnBeatTolerance || currentTime >= targetBeatTime + beatLength - isOnBeatTolerance)
+        if (currentTime >= targetBeatTime - isOnBeatTolerance || currentTime <= targetBeatTime - beatLength * gapBetweenSteps + isOnBeatTolerance)
         {
             Debug.Log("IsOnBeat");
             return true;
         }
         else
         {
+            
+        
             Debug.Log("NOPE");
             return false;
         }
