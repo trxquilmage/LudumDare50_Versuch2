@@ -26,10 +26,10 @@ public class InputManager : MonoBehaviour
     }
     void AssignInputTriggers()
     {
-        controls.MovementPrompts.Left.performed =+ context => StepLeft();
-        controls.MovementPrompts.Right.performed =+ context => StepRight();
-        controls.MovementPrompts.Jump.performed =+ context => Jump();
-        controls.MovementPrompts.Duck.performed =+ context => Duck();
+        controls.MovementPrompts.Left.performed += context => StepLeft();
+        controls.MovementPrompts.Right.performed += context => StepRight();
+        controls.MovementPrompts.Jump.performed += context => Jump();
+        controls.MovementPrompts.Duck.performed += context => Duck();
     }
     void StepLeft()
     {
