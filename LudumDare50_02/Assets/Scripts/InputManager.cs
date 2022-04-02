@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static InputManager instance;
+    [SerializeField] Controls controls;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        AssignSingleton();
+    }
+    private void Start()
+    {
+        AssignInputTriggers();
+    }
+    void AssignSingleton()
+    {
+#if UNITY_EDITOR
+        if (instance != null)
+        {
+            Debug.LogWarning("You have more than one InputManager in scene");
+        }
+#endif
+    }
+    void AssignInputTriggers()
+    {
+        controls.MovementPrompts.Left.performed =+ context => StepLeft();
+        controls.MovementPrompts.Right.performed =+ context => StepRight();
+        controls.MovementPrompts.Jump.performed =+ context => Jump();
+        controls.MovementPrompts.Duck.performed =+ context => Duck();
+    }
+    void StepLeft()
+    {
+
+    }
+    void StepRight()
+    {
+
+    }
+    void Jump()
+    {
+
+    }
+    void Duck()
+    {
+
     }
 }
