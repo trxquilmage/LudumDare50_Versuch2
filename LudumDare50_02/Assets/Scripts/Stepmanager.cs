@@ -42,7 +42,10 @@ public class Stepmanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveallSteps();
+        if (BeatManager.instance.startingTime != 0)
+        {
+            MoveallSteps();
+        }
     }
 
     void SpawnAllsteps()

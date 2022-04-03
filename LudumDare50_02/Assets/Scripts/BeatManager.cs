@@ -9,7 +9,7 @@ public class BeatManager : MonoBehaviour
     [Range(0, 500)]
     public float BPM = 120;
     public float beatLength { get { float value = 1 / (BPM / 60); return value; } }
-    float startingTime;
+    [HideInInspector] public float startingTime;
     float lastBeatTime;
     [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
     [Range(1, 10)] public int beatsProStep = 2;
