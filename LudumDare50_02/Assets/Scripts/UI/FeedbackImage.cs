@@ -7,6 +7,7 @@ public class FeedbackImage : MonoBehaviour
 {
     [SerializeField] Sprite[] feedbackQTEImages;
     Image image;
+    int[] feedbackCounters = new int[4];
     InputManager.Inputs nextInput;
     bool needsInput, giveFeedback = true;
     private void Awake()
@@ -15,7 +16,7 @@ public class FeedbackImage : MonoBehaviour
     }
     public void SwitchImageAndResetTimer(InputManager.Inputs inputs)
     {
-        int index = (InputNeedsFeedback()) ? (int)inputs : 4;
+        int index = (InputNeedsFeedback(inputs)) ? (int)inputs : 4;
         StartCoroutine(LerpAlpha(0, 0.7f, 0.2f));
         image.sprite = feedbackQTEImages[index];
         nextInput = inputs;
@@ -33,13 +34,32 @@ public class FeedbackImage : MonoBehaviour
 
         }
     }
-    bool InputNeedsFeedback()
+    bool InputNeedsFeedback(InputManager.Inputs inputs)
     {
         if (giveFeedback)
         {
+            feedbackCounters[(int)inputs]++;
+            if (feedbackCounters[(int)inputs] > 2)
+            {
+                CheckIfAllFeedbackIsGiven();
+                return false;
+            }
             return true;
         }
         return false;
+    }
+    void CheckIfAllFeedbackIsGiven()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (feedbackCounters[i] > 2)
+            {
+                if (i == 3)
+                    giveFeedback = false;
+                continue;
+            }
+            break;
+        }
     }
     void HighlightAndVanish()
     {
@@ -49,7 +69,7 @@ public class FeedbackImage : MonoBehaviour
     {
         StartCoroutine(LerpAlpha(0.7f, 1, 0.05f));
         yield return new WaitForSeconds(0.05f);
-        StartCoroutine(LerpAlpha(1,0,0.3f));
+        StartCoroutine(LerpAlpha(1, 0, 0.3f));
     }
     IEnumerator LerpAlpha(float startAlpha, float endAlpha, float time)
     {
@@ -59,7 +79,7 @@ public class FeedbackImage : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            alpha = Mathf.Lerp( endAlpha, startAlpha, timer/ time);
+            alpha = Mathf.Lerp(endAlpha, startAlpha, timer / time);
             image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
             yield return delay;
         }
