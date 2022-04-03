@@ -71,7 +71,6 @@ public class BeatManager : MonoBehaviour
        // CheckForVoiceLine();
         if (beats == nextBeatWithStep)
         {
-
             nextBeatWithStep += beatsProStep;
             float timeSinceLastStep = Time.time - lastBeatTime;
             float timeUntilNextStep = (beatLength * beatsProStep) - timeSinceLastStep;

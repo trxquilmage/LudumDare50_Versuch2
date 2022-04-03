@@ -51,6 +51,11 @@ public class InputManager : MonoBehaviour
             CompareToBeatTime(inputs, (float)time);
 
         }
+        else 
+        {
+            TriggerStumbleAnimation();
+        
+        }
     }
     void CompareToBeatTime(Inputs inputs, float time)
     {
@@ -58,6 +63,11 @@ public class InputManager : MonoBehaviour
         {
             SoundManager.soundManagerInstance.PlayFootstep();
             //Player.ContinueWalking();
+        }
+        else 
+        {
+            TriggerStumbleAnimation();
+        
         }
     }
     private void OnDisable()
@@ -76,6 +86,11 @@ public class InputManager : MonoBehaviour
             anim.SetTrigger("duck");
         }
 
+
+    }
+    void TriggerStumbleAnimation() 
+    {
+        anim.SetTrigger("stumble");
 
     }
 }

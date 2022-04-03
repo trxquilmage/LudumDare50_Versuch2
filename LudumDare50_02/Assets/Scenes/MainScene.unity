@@ -436,6 +436,10 @@ PrefabInstance:
       value: InputManager
       objectReference: {fileID: 0}
     - target: {fileID: 5892077422296029881, guid: 5f29975364787954786199d72d5af2f9, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1426128411}
+    - target: {fileID: 5892077422296029881, guid: 5f29975364787954786199d72d5af2f9, type: 3}
       propertyPath: circleImage
       value: 
       objectReference: {fileID: 0}
