@@ -89,17 +89,20 @@ public class Stepmanager : MonoBehaviour
 
     void Respawn(Step step)
     {
-        Debug.Log("Respawn");
-        step.DeleteObstacles();
-        Vector3 Respawnpoint = steps[steps.Count - 1].transform.position - startingPoint.forward * stepOffset;
-        step.transform.position = Respawnpoint;
-        steps.Remove(step);
-        steps.Add(step);
-        // BeatManager.instance.IsStepOnBeat();
-        stepsSpawned += 1;
-        whichObstacleToSpawn(step);
-        FeedbackManager.instance.SetFeedbackForStep(step);
-        FeedbackManager.instance.SetCurrentStep(step);
+        if (BeatManager.instance.startingTime != 0)
+        {
+            Debug.Log("Respawn");
+            step.DeleteObstacles();
+            Vector3 Respawnpoint = steps[steps.Count - 1].transform.position - startingPoint.forward * stepOffset;
+            step.transform.position = Respawnpoint;
+            steps.Remove(step);
+            steps.Add(step);
+            // BeatManager.instance.IsStepOnBeat();
+            stepsSpawned += 1;
+            whichObstacleToSpawn(step);
+            FeedbackManager.instance.SetFeedbackForStep(step);
+            FeedbackManager.instance.SetCurrentStep(step);
+        }
     }
 
     public void CheckIfShouldRespawn(Step step)

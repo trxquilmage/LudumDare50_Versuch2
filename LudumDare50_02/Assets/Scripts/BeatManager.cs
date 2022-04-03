@@ -48,6 +48,7 @@ public class BeatManager : MonoBehaviour
     public void Gamestart()
     {
         startingTime = Time.time;
+        SoundManager.soundManagerInstance.ResetMusicLayer();
     }
     public void CheckForBeat()
     {
@@ -67,7 +68,7 @@ public class BeatManager : MonoBehaviour
         beats += 1;
         lastBeatTime += beatLength;
         CheckForSoundlayer();
-        CheckForVoiceLine();
+       // CheckForVoiceLine();
         if (beats == nextBeatWithStep)
         {
 
@@ -108,6 +109,7 @@ public class BeatManager : MonoBehaviour
     {
         if (SoundManager.soundManagerInstance.layerState < 6 && beats >= soundLayerSteps[SoundManager.soundManagerInstance.layerState])
         {
+            SoundManager.soundManagerInstance.PlayVoiceLine();
             SoundManager.soundManagerInstance.AddMusicLayer();
         }
     }
