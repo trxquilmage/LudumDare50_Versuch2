@@ -71,8 +71,8 @@ public class Stepmanager : MonoBehaviour
     void MoveallSteps()
     {
         float BPS = BeatManager.instance.BPM / 60;
-        
-        Vector3 velocity = startingPoint.forward * BPS * stepOffset/ BeatManager.instance.beatsProStep;
+
+        Vector3 velocity = startingPoint.forward * BPS * stepOffset / BeatManager.instance.beatsProStep;
         foreach (Step step in steps)
         {
             MoveStep(step, velocity);
@@ -92,7 +92,7 @@ public class Stepmanager : MonoBehaviour
         step.transform.position = Respawnpoint;
         steps.Remove(step);
         steps.Add(step);
-       // BeatManager.instance.IsStepOnBeat();
+        // BeatManager.instance.IsStepOnBeat();
         stepsSpawned += 1;
         whichObstacleToSpawn(step);
 
@@ -123,15 +123,27 @@ public class Stepmanager : MonoBehaviour
 
     public void whichObstacleToSpawn(Step step)
     {
-       
+
         if (stepsSpawned % 5 == 0)
         {
             SpawnObstacle(0, step);
+            step.input = InputManager.Inputs.Jump;
         }
 
         if (stepsSpawned % 12 == 0)
         {
             SpawnObstacle(1, step);
+            step.input = InputManager.Inputs.Duck;
         }
+    }
+
+    public InputManager.Inputs GetnextInput()
+    {
+        int index = Mathf.FloorToInt(steps.Count / 2);
+        InputManager.Inputs input = steps[index].input;
+        return input;
+
+
+
     }
 }

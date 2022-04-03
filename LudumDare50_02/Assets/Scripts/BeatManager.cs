@@ -8,14 +8,14 @@ public class BeatManager : MonoBehaviour
     //länge eines Tacktes in S
     [Range(0, 500)]
     public float BPM = 120;
-    public float beatLength { get { float value =1/( BPM / 60); return value; } }
+    public float beatLength { get { float value = 1 / (BPM / 60); return value; } }
     float startingTime;
     float lastBeatTime;
     [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
     [Range(1, 10)] public int beatsProStep = 2;
-    int nextBeatWithStep =1;
+    int nextBeatWithStep = 1;
     [HideInInspector] public int beats;
-    
+
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class BeatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         CheckForBeat();
     }
 
@@ -53,7 +53,7 @@ public class BeatManager : MonoBehaviour
         float currentTime = Time.time - startingTime;
         float pastTimeSinceLastBeat = currentTime - lastBeatTime;
         int beats = Mathf.FloorToInt(pastTimeSinceLastBeat / beatLength);
-        lastBeatTime += beats * beatLength;
+
 
         for (int i = 0; i < beats; i++)
         {
@@ -64,21 +64,30 @@ public class BeatManager : MonoBehaviour
     {
         Debug.Log("uz");
         beats += 1;
-        if (beats == nextBeatWithStep) 
+        lastBeatTime += beatLength;
+        if (beats == nextBeatWithStep)
         {
+
             nextBeatWithStep += beatsProStep;
+            float timeSinceLastStep = Time.time - lastBeatTime;
+            float timeUntilNextStep = (beatLength * beatsProStep) - timeSinceLastStep;
+            Debug.Log(timeUntilNextStep);
+            if (InputManager.instance != null)
+            {
+                InputManager.instance.SignalNextBeat(Stepmanager.Instance.GetnextInput(), timeUntilNextStep);
+            }
         }
     }
 
 
 
-    public bool IsStepOnBeat(float time) 
+    public bool IsStepOnBeat(float time)
     {
-        float targetBeatTime = startingTime+(nextBeatWithStep*beatLength);
-        return IsOnBeat(targetBeatTime,time);
+        float targetBeatTime = startingTime + (nextBeatWithStep * beatLength);
+        return IsOnBeat(targetBeatTime, time);
     }
 
-    public bool IsOnBeat(float targetBeatTime, float time) 
+    public bool IsOnBeat(float targetBeatTime, float time)
     {
         float currentTime = time - startingTime;
         if (currentTime >= targetBeatTime - isOnBeatTolerance || currentTime <= targetBeatTime - beatLength * beatsProStep + isOnBeatTolerance)
@@ -88,8 +97,8 @@ public class BeatManager : MonoBehaviour
         }
         else
         {
-            
-        
+
+
             Debug.Log("NOPE");
             return false;
         }
