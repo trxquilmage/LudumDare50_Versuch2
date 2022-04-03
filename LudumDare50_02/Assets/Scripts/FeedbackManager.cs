@@ -88,9 +88,11 @@ public class FeedbackManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             if (feedbackCounters[i] > 2)
+            {
                 if (i == 3)
                     stillNeedsFeedback = false;
-            continue;
+                continue;
+            }
             break;
         }
     }
