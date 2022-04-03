@@ -15,6 +15,9 @@ public class BeatManager : MonoBehaviour
     [Range(1, 10)] public int beatsProStep = 2;
     int nextBeatWithStep = 1;
     [HideInInspector] public int beats;
+    [Header("Sound")]
+    [SerializeField] int[] soundLayerSteps = new int[7];
+    
 
 
     private void Awake()
@@ -28,12 +31,6 @@ public class BeatManager : MonoBehaviour
             Destroy(this);
         }
         Gamestart();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -65,6 +62,7 @@ public class BeatManager : MonoBehaviour
         Debug.Log("uz");
         beats += 1;
         lastBeatTime += beatLength;
+        CheckForSoundlayer();
         if (beats == nextBeatWithStep)
         {
 
@@ -74,12 +72,9 @@ public class BeatManager : MonoBehaviour
             //Debug.Log(timeUntilNextStep);
             //Debug.Log(InputManager.instance.name);
             InputManager.instance.SignalNextBeat(Stepmanager.Instance.GetnextInput(), timeUntilNextStep);
-            
+
         }
     }
-
-
-
     public bool IsStepOnBeat(float time)
     {
         float targetBeatTime = startingTime + (nextBeatWithStep * beatLength);
@@ -103,4 +98,14 @@ public class BeatManager : MonoBehaviour
         }
 
     }
+
+    void CheckForSoundlayer() 
+    {
+        if(beats >= soundLayerSteps[SoundManager.soundManagerInstance.layerState] && SoundManager.soundManagerInstance.layerState<7) 
+        {
+            SoundManager.soundManagerInstance.AddMusicLayer();
+        }
+    }
+
+
 }
