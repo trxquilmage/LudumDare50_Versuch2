@@ -1967,8 +1967,8 @@ MonoBehaviour:
     optionB: I REALLY dont care!
     optionC: Ja.
   startShowingQuizTime: 2
-  startShowingQuizDelay: 10
-  timeToAnswer: 5
+  startShowingQuizDelay: 40
+  timeToAnswer: 10
   questionCooldown: 8
 --- !u!1 &5021412560121673662
 GameObject:
