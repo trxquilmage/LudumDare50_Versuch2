@@ -190,5 +190,7 @@ public class FeedbackManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         stillNeedsFeedback = false;
+        foreach (Step step in Stepmanager.Instance.steps)
+            stepFeedback[step].GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 }
