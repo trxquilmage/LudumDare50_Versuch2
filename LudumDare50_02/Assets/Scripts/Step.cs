@@ -6,6 +6,7 @@ public class Step : MonoBehaviour
 {
     List<GameObject> Obstacles;
     public InputManager.Inputs input;
+    [SerializeField] Transform player;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,10 @@ public class Step : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (player != null && Mathf.Abs(transform.position.z-player.transform.position.z)<0.1f) 
+        {
+            Debug.Log("the palyer is at index:"+ Stepmanager.Instance.steps.IndexOf(this));
+        }
     }
     private void LateUpdate()
     {

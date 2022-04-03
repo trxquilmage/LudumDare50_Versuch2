@@ -141,7 +141,7 @@ public class Stepmanager : MonoBehaviour
 
     public InputManager.Inputs GetnextInput()
     {
-        int index = Mathf.FloorToInt(steps.Count / 2);
+        int index = 13;
         InputManager.Inputs input = steps[index].input;
         return input;
 
