@@ -29,7 +29,9 @@ public class Step : MonoBehaviour
             {
                 Destroy(Obstacles[i]);
             }
+
         }
+        input = 0;
     }
     public void AddObstacle(GameObject obstacle)
     {
