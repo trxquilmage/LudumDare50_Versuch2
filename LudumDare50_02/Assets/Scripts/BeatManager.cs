@@ -71,6 +71,7 @@ public class BeatManager : MonoBehaviour
        // CheckForVoiceLine();
         if (beats == nextBeatWithStep)
         {
+            FeedbackManager.instance.FlashOnBeat();
             nextBeatWithStep += beatsProStep;
             float timeSinceLastStep = Time.time - lastBeatTime;
             float timeUntilNextStep = (beatLength * beatsProStep) - timeSinceLastStep;

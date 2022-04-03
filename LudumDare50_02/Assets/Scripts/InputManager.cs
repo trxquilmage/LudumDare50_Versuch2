@@ -49,7 +49,6 @@ public class InputManager : MonoBehaviour
             FeedbackManager.instance.DealWithFeedback(inputs);
             TriggerAnimation(inputs);
             CompareToBeatTime(inputs, (float)time);
-
         }
         else 
         {

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +8,7 @@ public class FeedbackManager : MonoBehaviour
     public static FeedbackManager instance;
     [SerializeField] GameObject feebackImagePrefab;
     [SerializeField] GameObject canvas;
+    [SerializeField] Light lights;
 
     Dictionary<Step, GameObject> stepFeedback = new Dictionary<Step, GameObject>();
     Dictionary<InputManager.Inputs, bool> currentPossibleKeys = new Dictionary<InputManager.Inputs, bool>();
@@ -35,7 +36,7 @@ public class FeedbackManager : MonoBehaviour
         {
             InstantiateFeedbackUnderneathEachStep();
             firstRound = false;
-            StartCoroutine(TurnFeedbackoffAfterSeconds(60));
+            StartCoroutine(TurnFeedbackoffAfterSeconds(200));
         }
         if (stillNeedsFeedback)
             UpdateEachStepMovement();
@@ -192,5 +193,21 @@ public class FeedbackManager : MonoBehaviour
         stillNeedsFeedback = false;
         foreach (Step step in Stepmanager.Instance.steps)
             stepFeedback[step].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+    }
+    public void FlashOnBeat()
+    {
+        StartCoroutine(Flash(0.3f));
+    }
+    IEnumerator Flash(float time)
+    {
+        float timer = time;
+        WaitForEndOfFrame delay = new WaitForEndOfFrame();
+
+        while (timer > 0)
+        {
+            lights.intensity = Mathf.Lerp(500, 10000, (timer / time));
+            timer -= Time.deltaTime;
+            yield return delay;
+        }
     }
 }
