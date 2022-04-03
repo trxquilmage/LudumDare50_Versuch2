@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
     [SerializeField] FeedbackImage currentFeedbackImage;
+    [SerializeField] Animator anim;
 
     public enum Inputs
     {
@@ -46,7 +47,9 @@ public class InputManager : MonoBehaviour
         if (FeedbackManager.instance.CheckIfInputWasCorrect(inputs))
         {
             FeedbackManager.instance.DealWithFeedback(inputs);
+            TriggerAnimation(inputs);
             CompareToBeatTime(inputs, (float)time);
+
         }
     }
     void CompareToBeatTime(Inputs inputs, float time)
@@ -60,5 +63,19 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+    }
+
+    void TriggerAnimation(Inputs input) 
+    {
+        if (input == Inputs.Jump) 
+        {
+            anim.SetTrigger("jump");
+        }
+        else if (input == Inputs.Duck) 
+        {
+            anim.SetTrigger("duck");
+        }
+
+
     }
 }
