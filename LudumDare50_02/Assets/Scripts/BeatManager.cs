@@ -8,13 +8,13 @@ public class BeatManager : MonoBehaviour
     //länge eines Tacktes in S
     [Range(0, 500)]
     public float BPM = 120;
-    float beatLength { get { float value = BPM / 60; return value; } }
+    public float beatLength { get { float value =1/( BPM / 60); return value; } }
     float startingTime;
     float lastBeatTime;
     [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
-    [Range(0, 10)] public int gapBetweenSteps = 2;
+    [Range(1, 10)] public int beatsProStep = 2;
     int nextBeatWithStep =1;
-    int beats;
+    [HideInInspector] public int beats;
     
 
     private void Awake()
@@ -39,7 +39,7 @@ public class BeatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsStepOnBeat();
+        
         CheckForBeat();
     }
 
@@ -62,11 +62,11 @@ public class BeatManager : MonoBehaviour
     }
     void OnBeat()
     {
-        Debug.Log("Beat");
+        Debug.Log("uz");
         beats += 1;
         if (beats == nextBeatWithStep) 
         {
-            nextBeatWithStep += gapBetweenSteps;
+            nextBeatWithStep += beatsProStep;
         }
     }
 
@@ -76,14 +76,12 @@ public class BeatManager : MonoBehaviour
     {
         float targetBeatTime = startingTime+(nextBeatWithStep*beatLength);
         return IsOnBeat(targetBeatTime);
-
     }
 
     public bool IsOnBeat(float targetBeatTime) 
     {
-       
         float currentTime = Time.time - startingTime;
-        if (currentTime >= targetBeatTime - isOnBeatTolerance || currentTime <= targetBeatTime - beatLength * gapBetweenSteps + isOnBeatTolerance)
+        if (currentTime >= targetBeatTime - isOnBeatTolerance || currentTime <= targetBeatTime - beatLength * beatsProStep + isOnBeatTolerance)
         {
             Debug.Log("IsOnBeat");
             return true;
