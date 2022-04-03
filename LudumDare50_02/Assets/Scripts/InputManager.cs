@@ -18,13 +18,13 @@ public class InputManager : MonoBehaviour
 
     Controls controls;
     Dictionary<Inputs, bool> currentPossibleKeys = new Dictionary<Inputs, bool>();
-    Inputs lastPressedKey = Inputs.Jump;
+    Inputs keyLastRound = Inputs.Jump;
 
-    public void SignalNextBeat(Inputs inputs, float timeTilHit)
+    public void SignalNextBeat(Inputs inputs)
     {
         ManagePossibleKeyList(inputs);
 
-        PortrayFeedback(GetFirstPossibleKey(), timeTilHit);
+        //PortrayFeedback(GetFirstPossibleKey());
     }
 
     void Awake()
@@ -72,6 +72,7 @@ public class InputManager : MonoBehaviour
     {
         if (BeatManager.instance.IsStepOnBeat(time))
         {
+            SoundManager.soundManagerInstance.PlayFootstep();
             Debug.Log("Correct Key -> Is On Beat!");
             //Player.ContinueWalking();
         }
@@ -84,15 +85,15 @@ public class InputManager : MonoBehaviour
     {
         if ((int)inputs < (int)Inputs.Jump)
         {
-            if ((int)lastPressedKey > (int)Inputs.Right)
+            if ((int)keyLastRound > (int)Inputs.Right)
             {
                 currentPossibleKeys[Inputs.Left] = true;
                 currentPossibleKeys[Inputs.Right] = true;
             }
             else
             {
-                currentPossibleKeys[Inputs.Left] = lastPressedKey != Inputs.Left;
-                currentPossibleKeys[Inputs.Right] = lastPressedKey != Inputs.Right;
+                currentPossibleKeys[Inputs.Left] = keyLastRound != Inputs.Left;
+                currentPossibleKeys[Inputs.Right] = keyLastRound != Inputs.Right;
             }
             currentPossibleKeys[Inputs.Jump] = false;
             currentPossibleKeys[Inputs.Duck] = false;
@@ -112,9 +113,9 @@ public class InputManager : MonoBehaviour
             currentPossibleKeys[Inputs.Duck] = true;
         }
 
-        lastPressedKey = GetFirstPossibleKey();
+        keyLastRound = GetFirstPossibleKey();
     }
-    Inputs GetFirstPossibleKey()
+    public Inputs GetFirstPossibleKey()
     {
         for (int i = 0; i < 4; i++)
             if (currentPossibleKeys[(Inputs)i])

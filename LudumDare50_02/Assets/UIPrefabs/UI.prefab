@@ -1858,13 +1858,118 @@ MonoBehaviour:
   optionB: {fileID: 5021412558607312026}
   optionC: {fileID: 5021412559387933166}
   questions:
-  - question: What is a Schnegge?
-    optionA: green
-    optionB: Fakt Nummer 1
+  - question: What makes you proud to work at this company?
+    optionA: Yes
+    optionB: That's highly confidential.
+    optionC: Shoe
+  - question: 'What will happen if you fail? '
+    optionA: Yellow
+    optionB: Never!
+    optionC: I'd love to.
+  - question: Where can we find the printer?
+    optionA: Green
+    optionB: That's a frist.
+    optionC: Not at the moment.
+  - question: 'What role does the company play in your life? '
+    optionA: Blue jellyfish
+    optionB: 'Not until Wednesday. '
+    optionC: 'You don''t have the right to know this. '
+  - question: 'Do you ever contemplate life? '
+    optionA: Not until Friday.
+    optionB: No
+    optionC: 417
+  - question: 'Should I really take this risk? '
+    optionA: If only
+    optionB: 'We don''t open at fridays. '
+    optionC: Salted pickles.
+  - question: 'Do you recommend these services? '
+    optionA: 'It''s right there. '
+    optionB: When I have the time.
+    optionC: Shoe
+  - question: What is your favorite workplace tradition?
+    optionA: That shouldn't happen.
+    optionB: I do.
+    optionC: Why are you doing this?
+  - question: Why are you asking me this again?
+    optionA: 'I forgot my keys! '
+    optionB: 'Hahahahaha! '
+    optionC: You should know this.
+  - question: Do you think our customers are satisfied?
+    optionA: I don't recall.
+    optionB: 'Should I know this? '
+    optionC: 'Wait for me. '
+  - question: Can I talk to the manager?
+    optionA: Underneath the rainbow.
+    optionB: Not that I remember.
+    optionC: It's raining.
+  - question: How can you enjoy working?
+    optionA: Yeah.
+    optionB: 'I''m sorry. '
+    optionC: White chocolate
+  - question: What are your strengths?
+    optionA: W-what?
+    optionB: My pleasure.
+    optionC: It's clear to me.
+  - question: How did you handle work-pressure this week?
+    optionA: The beat.
+    optionB: 'Do I know you? '
+    optionC: Wait for me.
+  - question: Are you comfortable with night shifts?
+    optionA: It's raining.
+    optionB: ' Push the button. '
+    optionC: Oh.
+  - question: 'What is the key to success? '
+    optionA: Did you try restarting?
+    optionB: Definitely
+    optionC: On a rainy day.
+  - question: What are the procedures you follow?
+    optionA: Not to me.
+    optionB: Uff, indeed.
+    optionC: Hello
+  - question: Do you enjoy working in a team?
+    optionA: This can't be happenig.
+    optionB: WHY!?
+    optionC: About that...
+  - question: How to deal with the difficult customer?
+    optionA: WHY!?
+    optionB: You need me.
+    optionC: I assure you.
+  - question: 'Are you happy with your current role? '
+    optionA: I'ver been waiting.
+    optionB: This will be my downfall.
+    optionC: Not to me.
+  - question: Is this problem causing other problems?
+    optionA: That's my favorite.
+    optionB: Can you move?
+    optionC: I'm not sure.
+  - question: What motivates you to get your job done?
+    optionA: Is it that obvious?
+    optionB: Green is not a colour.
+    optionC: Nah.
+  - question: How can I help?
+    optionA: How can I help?
+    optionB: Are you sure?
+    optionC: I once saw that in a dream.
+  - question: 'How will this affect you? '
+    optionA: Can you repeat that?
+    optionB: That makes no sense.
+    optionC: Sure, it's Form A63.
+  - question: When did this situation begin?
+    optionA: I dont get paid enough for that
+    optionB: Can't you just write a mail?
+    optionC: .... what?
+  - question: 'How are you coping with the corporate culture? '
+    optionA: I want to go home now
+    optionB: S-sure...
+    optionC: I never wanted this!
+  - question: Are you happy with your job?
+    optionA: ... go where?
+    optionB: I REALLY dont care!
     optionC: Ja.
   startShowingQuizTime: 2
-  timeToAnswer: 5
-  questionCooldown: 2
+  startShowingQuizDelay: 40
+  timeToAnswer: 10
+  questionCooldown: 8
 --- !u!1 &5021412560121673662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,6 +2017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingameUI: {fileID: 5021412559596217458}
   mainMenuUI: {fileID: 5021412558312574532}
+  quiz: {fileID: 0}
 --- !u!1 &5021412560269273498
 GameObject:
   m_ObjectHideFlags: 0
