@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BPM: 170
   isOnBeatTolerance: 0.2
-  beatsProStep: 1
+  beatsProStep: 2
   beats: 0
+  soundLayerSteps: 3200000064000000c80000002c010000900100005802000020030000

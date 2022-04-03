@@ -17,7 +17,10 @@ public class BeatManager : MonoBehaviour
     [HideInInspector] public int beats;
     [Header("Sound")]
     [SerializeField] int[] soundLayerSteps = new int[7];
-    
+    [SerializeField] int minBeatBetweenVoiceLine;
+    [SerializeField] int maxBeatBetweenVoiceLine;
+    [SerializeField] int beatOfnextVoiceLine;
+
 
 
     private void Awake()
@@ -63,6 +66,7 @@ public class BeatManager : MonoBehaviour
         beats += 1;
         lastBeatTime += beatLength;
         CheckForSoundlayer();
+        CheckForVoiceLine();
         if (beats == nextBeatWithStep)
         {
 
@@ -101,11 +105,25 @@ public class BeatManager : MonoBehaviour
 
     void CheckForSoundlayer() 
     {
-        if(beats >= soundLayerSteps[SoundManager.soundManagerInstance.layerState] && SoundManager.soundManagerInstance.layerState<7) 
+        if(SoundManager.soundManagerInstance.layerState < 6 && beats >= soundLayerSteps[SoundManager.soundManagerInstance.layerState] ) 
         {
             SoundManager.soundManagerInstance.AddMusicLayer();
         }
     }
 
+    void CheckForVoiceLine() 
+    {
+        if (beatOfnextVoiceLine == 0) 
+        {
+            beatOfnextVoiceLine = Random.Range(minBeatBetweenVoiceLine, maxBeatBetweenVoiceLine);
+        }
+        else if(beats>=beatOfnextVoiceLine) 
+        {
+            SoundManager.soundManagerInstance.PlayVoiceLine();
+            beatOfnextVoiceLine += Random.Range(minBeatBetweenVoiceLine, maxBeatBetweenVoiceLine);
+            Debug.Log("voiceline");
+        }
+    
+    }
 
 }
