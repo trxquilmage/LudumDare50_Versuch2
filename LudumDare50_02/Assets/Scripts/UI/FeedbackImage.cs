@@ -7,32 +7,17 @@ public class FeedbackImage : MonoBehaviour
 {
     public Sprite[] feedbackQTEImages;
     Image image;
-    InputManager.Inputs nextInput;
-    bool needsInput, giveFeedback = true;
+
     private void Awake()
     {
         image = GetComponent<Image>();
     }
-    public void SwitchImageAndResetTimer(InputManager.Inputs inputs)
+    public void SwitchImageAndBlendIn(InputManager.Inputs inputs)
     {
         StartCoroutine(LerpAlpha(0, 0.7f, 0.2f));
         image.sprite = feedbackQTEImages[(int)inputs];
-        nextInput = inputs;
-        needsInput = true;
     }
-    public void HighlightIfActiveBeat(InputManager.Inputs inputs)
-    {
-        if (nextInput == inputs && needsInput)
-        {
-            HighlightAndVanish();
-            needsInput = false;
-        }
-        else // pressed the wrong button
-        {
-
-        }
-    }
-    void HighlightAndVanish()
+    public void HighlightAndVanish()
     {
         StartCoroutine(HighlightWaitVanish());
     }

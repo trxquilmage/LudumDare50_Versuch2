@@ -47,23 +47,21 @@ public class FeedbackManager : MonoBehaviour
 #endif
         instance = this;
     }
+
     public void DealWithFeedback(InputManager.Inputs inputs)
     {
-        if (CheckIfInputWasCorrect(inputs))
-        {
-
-        }
-        else
-        {
-
-        }
+        if (!CheckIfInputWasCorrect(inputs))
+            return;
+        stepFeedback[currentStep].GetComponent<FeedbackImage>().HighlightAndVanish();
     }
-
+    public void SetCurrentStep(Step step)
+    {
+        currentStep = step;
+    }
     public bool CheckIfInputWasCorrect(InputManager.Inputs inputs)
     {
         return inputs == currentStep.input;
     }
-
     public void InstantiateFeedbackUnderneathEachStep()
     {
         foreach (Step step in Stepmanager.Instance.steps)
@@ -77,7 +75,6 @@ public class FeedbackManager : MonoBehaviour
     {
         ManagePossibleKeyList(step.input);
         int firstPossibleKey = (int)GetFirstPossibleKey();
-        Debug.Log(firstPossibleKey);
 
         if (feedbackCounters[firstPossibleKey] > 2)
         {
@@ -100,6 +97,7 @@ public class FeedbackManager : MonoBehaviour
         foreach (Step step in Stepmanager.Instance.steps)
             MoveStep(step);
     }
+
     void MoveStep(Step step)
     {
         Vector3 scaleVector = new Vector3(1, 1, 0);
@@ -124,7 +122,7 @@ public class FeedbackManager : MonoBehaviour
     void SignalStepBeat(Step step, int firstPossibleKey)
     {
         feedbackCounters[firstPossibleKey]++;
-        stepFeedback[step].GetComponent<FeedbackImage>().SwitchImageAndResetTimer((InputManager.Inputs)firstPossibleKey);
+        stepFeedback[step].GetComponent<FeedbackImage>().SwitchImageAndBlendIn((InputManager.Inputs)firstPossibleKey);
     }
     void CheckIfAllFeedbacksAreDone()
     {
@@ -184,5 +182,4 @@ public class FeedbackManager : MonoBehaviour
 #endif
         return InputManager.Inputs.Left;
     }
-
 }
