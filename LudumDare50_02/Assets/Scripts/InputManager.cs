@@ -84,8 +84,8 @@ public class InputManager : MonoBehaviour
     }
     void CompareToBeatTime(Inputs inputs)
     {
-        //if (BeatManager.instance.IsOnBeat())
-            //Debug.Log("Correct Key -> Is On Beat!");
+        if (BeatManager.instance.IsOnBeat())
+            Debug.Log("Correct Key -> Is On Beat!");
             //Player.ContinueWalking();
     }
     bool PressedCorrectKey(Inputs inputs)
