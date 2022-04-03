@@ -14,7 +14,7 @@ public class BeatManager : MonoBehaviour
     [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
     [Range(0, 10)] public int gapBetweenSteps = 2;
     int nextBeatWithStep =1;
-    int beats;
+    [HideInInspector] public int beats;
     
 
     private void Awake()
@@ -39,7 +39,7 @@ public class BeatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsStepOnBeat();
+        
         CheckForBeat();
     }
 
@@ -62,7 +62,7 @@ public class BeatManager : MonoBehaviour
     }
     void OnBeat()
     {
-        Debug.Log("Beat");
+        Debug.Log("uz");
         beats += 1;
         if (beats == nextBeatWithStep) 
         {
