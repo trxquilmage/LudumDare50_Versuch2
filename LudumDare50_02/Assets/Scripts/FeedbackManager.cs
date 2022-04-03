@@ -32,10 +32,13 @@ public class FeedbackManager : MonoBehaviour
             return;
 
         if (firstRound)
+        {
             InstantiateFeedbackUnderneathEachStep();
-        firstRound = false;
-
-        UpdateEachStepMovement();
+            firstRound = false;
+            StartCoroutine(TurnFeedbackoffAfterSeconds(60));
+        }
+        if (stillNeedsFeedback)
+            UpdateEachStepMovement();
     }
     void AssignSingleton()
     {
@@ -47,11 +50,13 @@ public class FeedbackManager : MonoBehaviour
 #endif
         instance = this;
     }
-
     public void DealWithFeedback(InputManager.Inputs inputs)
     {
+        Debug.Log(currentStep.input+ " " + inputs);
         if (!CheckIfInputWasCorrect(inputs))
+        {
             return;
+        }
         stepFeedback[currentStep].GetComponent<FeedbackImage>().HighlightAndVanish();
     }
     public void SetCurrentStep(Step step)
@@ -61,15 +66,6 @@ public class FeedbackManager : MonoBehaviour
     public bool CheckIfInputWasCorrect(InputManager.Inputs inputs)
     {
         return inputs == currentStep.input;
-    }
-    public void InstantiateFeedbackUnderneathEachStep()
-    {
-        foreach (Step step in Stepmanager.Instance.steps)
-        {
-            stepFeedback.Add(step, Instantiate(feebackImagePrefab, canvas.transform));
-            SetFeedbackForStep(step);
-        }
-        UpdateEachStepMovement();
     }
     public void SetFeedbackForStep(Step step)
     {
@@ -92,12 +88,20 @@ public class FeedbackManager : MonoBehaviour
         stepFeedback[step].GetComponent<Image>().color =
                 new Color(1, 1, 1, 1);
     }
-    public void UpdateEachStepMovement()
+    void InstantiateFeedbackUnderneathEachStep()
+    {
+        foreach (Step step in Stepmanager.Instance.steps)
+        {
+            stepFeedback.Add(step, Instantiate(feebackImagePrefab, canvas.transform));
+            SetFeedbackForStep(step);
+        }
+        UpdateEachStepMovement();
+    }
+    void UpdateEachStepMovement()
     {
         foreach (Step step in Stepmanager.Instance.steps)
             MoveStep(step);
     }
-
     void MoveStep(Step step)
     {
         Vector3 scaleVector = new Vector3(1, 1, 0);
@@ -122,7 +126,8 @@ public class FeedbackManager : MonoBehaviour
     void SignalStepBeat(Step step, int firstPossibleKey)
     {
         feedbackCounters[firstPossibleKey]++;
-        stepFeedback[step].GetComponent<FeedbackImage>().SwitchImageAndBlendIn((InputManager.Inputs)firstPossibleKey);
+        FeedbackImage img = stepFeedback[step].GetComponent<FeedbackImage>();
+        img.SwitchImageAndBlendIn((InputManager.Inputs)firstPossibleKey);
     }
     void CheckIfAllFeedbacksAreDone()
     {
@@ -137,7 +142,6 @@ public class FeedbackManager : MonoBehaviour
             break;
         }
     }
-
     void ManagePossibleKeyList(InputManager.Inputs inputs)
     {
         if ((int)inputs < (int)InputManager.Inputs.Jump)
@@ -181,5 +185,10 @@ public class FeedbackManager : MonoBehaviour
         Debug.LogWarning("Waring: There was no Key found here!");
 #endif
         return InputManager.Inputs.Left;
+    }
+    IEnumerator TurnFeedbackoffAfterSeconds(float time)
+    {
+        yield return new WaitForSeconds(time);
+        stillNeedsFeedback = false;
     }
 }
