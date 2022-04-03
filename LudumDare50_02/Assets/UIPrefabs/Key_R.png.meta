@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 788fd3f9f6b64b94ba7a299987b49777
+guid: aa4f8bb585f83304db34c52f19c7fc5e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -6287015404391540892
-    second: WASD_KeyPrototype_0
-  - first:
-      213: -2832153655817434078
-    second: WASD_KeyPrototype_1
-  - first:
-      213: 3929297634471158066
-    second: WASD_KeyPrototype_2
-  - first:
-      213: -2635588510655245976
-    second: WASD_KeyPrototype_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -149,95 +137,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: WASD_KeyPrototype_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 4
-        width: 71
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46755dbbcc800c8a0800000000000000
-      internalID: -6287015404391540892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WASD_KeyPrototype_1
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 4
-        width: 72
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22c8da3614b22b8d0800000000000000
-      internalID: -2832153655817434078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WASD_KeyPrototype_2
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 4
-        width: 72
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 231af67516ba78630800000000000000
-      internalID: 3929297634471158066
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WASD_KeyPrototype_3
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 4
-        width: 71
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8611b48a6328c6bd0800000000000000
-      internalID: -2635588510655245976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 202046370c67bee47b3397ff892c2a91
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

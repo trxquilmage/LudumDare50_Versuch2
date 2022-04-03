@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
     [SerializeField] bool usesLeftAndRight = true;
+    [SerializeField] FeedbackImage feedbackImage;
+    [SerializeField] CircleImage circleImage;
 
     public enum Inputs
     {
@@ -16,13 +18,13 @@ public class InputManager : MonoBehaviour
 
     Controls controls;
     Dictionary<Inputs, bool> currentPossibleKeys = new Dictionary<Inputs, bool>();
-    Inputs lastPressedKey;
+    Inputs lastPressedKey = Inputs.Jump;
 
-    public void SignalNextBeat(Inputs inputs)
+    public void SignalNextBeat(Inputs inputs, float timeTilHit)
     {
         if (usesLeftAndRight)
             ManagePossibleKeyList();
-        PortrayFeedback(inputs);
+        PortrayFeedback(inputs, timeTilHit);
     }
 
     void Awake()
@@ -32,61 +34,46 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         AssignInputTriggers();
+        AssignValues();
+        SignalNextBeat(Inputs.Duck, 2f);
     }
     void AssignSingleton()
     {
-        #if UNITY_EDITOR
+    #if UNITY_EDITOR
         if (instance != null)
         {
             Debug.LogWarning("You have more than one InputManager in scene");
         }
-        #endif
+    #endif
     }
     void AssignInputTriggers()
     {
         controls = new Controls();
         controls.Enable();
-        controls.MovementPrompts.Left.performed += context => StepLeft();
-        controls.MovementPrompts.Right.performed += context => StepRight();
-        controls.MovementPrompts.Jump.performed += context => Jump();
-        controls.MovementPrompts.Duck.performed += context => Duck();
+        controls.MovementPrompts.Left.performed += context => DoAction(Inputs.Left);
+        controls.MovementPrompts.Right.performed += context => DoAction(Inputs.Right);
+        controls.MovementPrompts.Jump.performed += context => DoAction(Inputs.Jump);
+        controls.MovementPrompts.Duck.performed += context => DoAction(Inputs.Duck);
     }
     void AssignValues()
     {
         currentPossibleKeys[Inputs.Duck] = true;
         currentPossibleKeys[Inputs.Jump] = true;
     }
-    void StepLeft()
+    void DoAction(Inputs inputs)
     {
-        SetLastPressed(Inputs.Left);
-        if (PressedCorrectKey(Inputs.Left))
-            CompareToBeatTime(Inputs.Left);
-        Debug.Log(lastInputTime[(int)Inputs.Left]);
-    }
-    void StepRight()
-    {
-        SetLastPressed(Inputs.Right);
-        if (PressedCorrectKey(Inputs.Right))
-            CompareToBeatTime(Inputs.Right);
-        Debug.Log(lastInputTime[(int)Inputs.Right]);
-    }
-    void Jump()
-    {
-        SetLastPressed(Inputs.Jump);
-        if (PressedCorrectKey(Inputs.Jump))
-            CompareToBeatTime(Inputs.Jump);
-        Debug.Log(lastInputTime[(int)Inputs.Jump]);
-    }
-    void Duck()
-    {
-        CompareToBeatTime(Inputs.Duck);
-        Debug.Log(lastInputTime[3]);
+        SetLastPressed(inputs);
+        if (PressedCorrectKey(inputs))
+        {
+            feedbackImage.HighlightIfActiveBeat(inputs);
+            CompareToBeatTime(inputs);
+        }
     }
     void CompareToBeatTime(Inputs inputs)
     {
-        if (BeatManager.instance.IsOnBeat())
-            Debug.Log("Correct Key -> Is On Beat!");
-            //Player.ContinueWalking();
+        //if (BeatManager.instance.IsOnBeat())
+        //Debug.Log("Correct Key -> Is On Beat!");
+        //Player.ContinueWalking();
     }
     bool PressedCorrectKey(Inputs inputs)
     {
@@ -98,7 +85,7 @@ public class InputManager : MonoBehaviour
     }
     void ManagePossibleKeyList()
     {
-        if (lastPressedKey == Inputs.Jump || lastStepWasWrong)
+        if ((int)lastPressedKey > 1 || lastStepWasWrong)
         {
             currentPossibleKeys[Inputs.Left] = true;
             currentPossibleKeys[Inputs.Right] = true;
@@ -109,9 +96,10 @@ public class InputManager : MonoBehaviour
             currentPossibleKeys[Inputs.Right] = lastPressedKey != Inputs.Right;
         }
     }
-    void PortrayFeedback(Inputs inputs)
+    void PortrayFeedback(Inputs inputs, float timeTilHit)
     {
-        
+        feedbackImage.SwitchImageAndResetTimer(inputs);
+        circleImage.HitOnBeat(timeTilHit);
     }
     private void OnDisable()
     {
