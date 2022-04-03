@@ -25,5 +25,6 @@ public class UIManager : MonoBehaviour
         ingameUI.SetActive(true);
         mainMenuUI.SetActive(false);
         quiz.startShowingQuizTime = Time.time + quiz.startShowingQuizDelay;
+        BeatManager.instance.Gamestart();
     }
 }
