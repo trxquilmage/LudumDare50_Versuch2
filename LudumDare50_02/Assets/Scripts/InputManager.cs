@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour
     }
     void CompareToBeatTime(Inputs inputs)
     {
-        if (BeatManager.instance.IsOnBeat())
+        if (BeatManager.instance.IsStepOnBeat())
             Debug.Log("Correct Key -> Is On Beat!");
             //Player.ContinueWalking();
     }

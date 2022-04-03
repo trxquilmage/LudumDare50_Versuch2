@@ -70,7 +70,7 @@ public class Stepmanager : MonoBehaviour
 
     void MoveallSteps()
     {
-        Vector3 velocity = startingPoint.forward * (escalatorLength * BeatManager.instance.BPM / (stepOffset * 60 * BeatManager.instance.gapBetweenSteps));
+        Vector3 velocity = startingPoint.forward * (escalatorLength * BeatManager.instance.BPM / (stepOffset * 60 * BeatManager.instance.beatsProStep));
         foreach (Step step in steps)
         {
             MoveStep(step, velocity);
@@ -90,7 +90,7 @@ public class Stepmanager : MonoBehaviour
         step.transform.position = Respawnpoint;
         steps.Remove(step);
         steps.Add(step);
-       // BeatManager.instance.IsStepOnBeat();
+        BeatManager.instance.IsStepOnBeat();
         stepsSpawned += 1;
         whichObstacleToSpawn(step);
 
