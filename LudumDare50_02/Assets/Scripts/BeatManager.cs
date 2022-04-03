@@ -11,7 +11,7 @@ public class BeatManager : MonoBehaviour
     public float beatLength { get { float value = 1 / (BPM / 60); return value; } }
     [HideInInspector] public float startingTime;
     float lastBeatTime;
-    [SerializeField][Range(0, 1)] float isOnBeatTolerance = 0;
+    [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
     [Range(1, 10)] public int beatsProStep = 2;
     int nextBeatWithStep = 1;
     [HideInInspector] public int beats;
@@ -38,8 +38,10 @@ public class BeatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        CheckForBeat();
+        if (startingTime != 0)
+        {
+            CheckForBeat();
+        }
     }
 
 
