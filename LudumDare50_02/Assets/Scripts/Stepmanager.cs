@@ -8,7 +8,7 @@ public class Stepmanager : MonoBehaviour
     [Header("Steps")]
     [SerializeField] Transform parentOfStairs;
     [SerializeField] GameObject stepPrefab;
-    [SerializeField] List<Step> steps;
+    public List<Step> steps;
     [SerializeField] Transform startingPoint;
     [SerializeField] Transform endpoint;
     [SerializeField] float stepOffset;
