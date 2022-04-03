@@ -5,26 +5,14 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
-    [SerializeField] bool usesLeftAndRight = true;
     [SerializeField] FeedbackImage currentFeedbackImage;
 
     public enum Inputs
     {
         Left, Right, Jump, Duck
     }
-    float[] lastInputTime = new float[4];
-    bool lastStepWasWrong;
 
     Controls controls;
-    Dictionary<Inputs, bool> currentPossibleKeys = new Dictionary<Inputs, bool>();
-    Inputs keyLastRound = Inputs.Jump;
-
-    public void SignalNextBeat(Inputs inputs)
-    {
-        ManagePossibleKeyList(inputs);
-
-        //PortrayFeedback(GetFirstPossibleKey());
-    }
 
     void Awake()
     {
@@ -33,7 +21,6 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         AssignInputTriggers();
-        AssignValues();
     }
     void AssignSingleton()
     {
@@ -54,16 +41,11 @@ public class InputManager : MonoBehaviour
         controls.MovementPrompts.Jump.performed += context => DoAction(Inputs.Jump, context.time);
         controls.MovementPrompts.Duck.performed += context => DoAction(Inputs.Duck, context.time);
     }
-    void AssignValues()
-    {
-        currentPossibleKeys[Inputs.Left] = true;
-        currentPossibleKeys[Inputs.Right] = true;
-    }
     void DoAction(Inputs inputs, double time)
     {
-        if (PressedCorrectKey(inputs))
+        if (FeedbackManager.instance.CheckIfInputWasCorrect(inputs))
         {
-            //currentFeedbackImage.HighlightIfActiveBeat(inputs);
+            FeedbackManager.instance.DealWithFeedback(inputs);
             CompareToBeatTime(inputs, (float)time);
         }
     }
@@ -72,61 +54,8 @@ public class InputManager : MonoBehaviour
         if (BeatManager.instance.IsStepOnBeat(time))
         {
             SoundManager.soundManagerInstance.PlayFootstep();
-            Debug.Log("Correct Key -> Is On Beat!");
             //Player.ContinueWalking();
         }
-    }
-    bool PressedCorrectKey(Inputs inputs)
-    {
-        return currentPossibleKeys[inputs];
-    }
-    void ManagePossibleKeyList(Inputs inputs)
-    {
-        if ((int)inputs < (int)Inputs.Jump)
-        {
-            if ((int)keyLastRound > (int)Inputs.Right)
-            {
-                currentPossibleKeys[Inputs.Left] = true;
-                currentPossibleKeys[Inputs.Right] = true;
-            }
-            else
-            {
-                currentPossibleKeys[Inputs.Left] = keyLastRound != Inputs.Left;
-                currentPossibleKeys[Inputs.Right] = keyLastRound != Inputs.Right;
-            }
-            currentPossibleKeys[Inputs.Jump] = false;
-            currentPossibleKeys[Inputs.Duck] = false;
-        }
-        else if ((int)inputs == (int)Inputs.Jump)
-        {
-            currentPossibleKeys[Inputs.Left] = false;
-            currentPossibleKeys[Inputs.Right] = false;
-            currentPossibleKeys[Inputs.Jump] = true;
-            currentPossibleKeys[Inputs.Duck] = false;
-        }
-        else if ((int)inputs == (int)Inputs.Duck)
-        {
-            currentPossibleKeys[Inputs.Left] = false;
-            currentPossibleKeys[Inputs.Right] = false;
-            currentPossibleKeys[Inputs.Jump] = false;
-            currentPossibleKeys[Inputs.Duck] = true;
-        }
-
-        keyLastRound = GetFirstPossibleKey();
-    }
-    public Inputs GetFirstPossibleKey()
-    {
-        for (int i = 0; i < 4; i++)
-            if (currentPossibleKeys[(Inputs)i])
-                return (Inputs)i;
-#if UNITY_EDITOR
-        Debug.LogWarning("Waring: There was no Key found here!");
-#endif
-        return Inputs.Left;
-    }
-    void PortrayFeedback(Inputs inputs, float timeTilHit)
-    {
-        currentFeedbackImage.SwitchImageAndResetTimer(inputs);
     }
     private void OnDisable()
     {

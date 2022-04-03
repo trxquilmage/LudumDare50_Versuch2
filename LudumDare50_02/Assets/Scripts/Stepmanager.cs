@@ -98,8 +98,7 @@ public class Stepmanager : MonoBehaviour
         // BeatManager.instance.IsStepOnBeat();
         stepsSpawned += 1;
         whichObstacleToSpawn(step);
-
-
+        FeedbackManager.instance.SetFeedbackForStep(step);
     }
 
     public void CheckIfShouldRespawn(Step step)
