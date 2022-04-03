@@ -18,6 +18,7 @@ public class FeedbackManager : MonoBehaviour
     {
         if (startFeedback)
         {
+            Debug.Log("A");
             if (!ab)
                 InstantiateFeedbackUnderneathEachStep();
             ab = true;
