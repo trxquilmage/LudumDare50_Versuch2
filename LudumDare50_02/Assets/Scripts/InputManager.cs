@@ -6,8 +6,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
     [SerializeField] bool usesLeftAndRight = true;
-    [SerializeField] FeedbackImage feedbackImage;
-    [SerializeField] CircleImage circleImage;
+    [SerializeField] FeedbackImage currentFeedbackImage;
 
     public enum Inputs
     {
@@ -64,7 +63,7 @@ public class InputManager : MonoBehaviour
     {
         if (PressedCorrectKey(inputs))
         {
-            feedbackImage.HighlightIfActiveBeat(inputs);
+            //currentFeedbackImage.HighlightIfActiveBeat(inputs);
             CompareToBeatTime(inputs, (float)time);
         }
     }
@@ -127,8 +126,7 @@ public class InputManager : MonoBehaviour
     }
     void PortrayFeedback(Inputs inputs, float timeTilHit)
     {
-        feedbackImage.SwitchImageAndResetTimer(inputs);
-        circleImage.HitOnBeat(timeTilHit);
+        currentFeedbackImage.SwitchImageAndResetTimer(inputs);
     }
     private void OnDisable()
     {
