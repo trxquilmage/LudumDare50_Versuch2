@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        ingameUI.SetActive(false);
     }
 
     // Update is called once per frame
