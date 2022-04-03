@@ -5,13 +5,13 @@ using UnityEngine;
 public class BeatManager : MonoBehaviour
 {
     public static BeatManager instance;
-    //länge eines Tacktes in S
+    //lï¿½nge eines Tacktes in S
     [Range(0, 500)]
     public float BPM = 120;
     public float beatLength { get { float value = 1 / (BPM / 60); return value; } }
     [HideInInspector] public float startingTime;
     float lastBeatTime;
-    [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
+    [SerializeField][Range(0, 1)] float isOnBeatTolerance = 0;
     [Range(1, 10)] public int beatsProStep = 2;
     int nextBeatWithStep = 1;
     [HideInInspector] public int beats;
@@ -33,7 +33,6 @@ public class BeatManager : MonoBehaviour
         {
             Destroy(this);
         }
-        Gamestart();
     }
 
     // Update is called once per frame
@@ -44,7 +43,7 @@ public class BeatManager : MonoBehaviour
     }
 
 
-    void Gamestart()
+    public void Gamestart()
     {
         startingTime = Time.time;
     }
