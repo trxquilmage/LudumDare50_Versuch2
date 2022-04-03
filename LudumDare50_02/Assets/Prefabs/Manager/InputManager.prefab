@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5892077422296029862}
   - component: {fileID: 5892077422296029881}
+  - component: {fileID: 7309911490354491690}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -46,3 +47,17 @@ MonoBehaviour:
   usesLeftAndRight: 1
   feedbackImage: {fileID: 0}
   circleImage: {fileID: 0}
+--- !u!114 &7309911490354491690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5892077422296029863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67443cfa9a26e3a4eb1f57b5187551dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feebackImagePrefab: {fileID: 6418291779481845268, guid: e0c714a7ffbcfca41a53eadba5fa8cf8, type: 3}
+  canvas: {fileID: 0}

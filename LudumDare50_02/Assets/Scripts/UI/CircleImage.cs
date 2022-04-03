@@ -35,7 +35,7 @@ public class CircleImage : MonoBehaviour
         {
             timer -= Time.deltaTime;
             transform.localScale = Vector3.Lerp(Vector3.zero, startScale, timer / timeTilHit);
-            beatWasHit = timer <= 0;
+            beatWasHit = timer <= 0.05f;
             yield return delay;
         }
         transform.localScale = Vector3.zero;
