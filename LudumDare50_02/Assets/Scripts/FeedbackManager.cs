@@ -10,15 +10,19 @@ public class FeedbackManager : MonoBehaviour
     Dictionary<Step, GameObject> stepFeedback = new Dictionary<Step, GameObject>();
     bool stillNeedsFeedback = true;
     bool ab;
+    public bool startFeedback;
 
     int[] feedbackCounters = new int[4];
 
     private void Update()
     {
-        if (!ab)
-            InstantiateFeedbackUnderneathEachStep();
-        ab = true;
-        UpdateFeedbackUnderneathEachStep();
+        if (startFeedback)
+        {
+            if (!ab)
+                InstantiateFeedbackUnderneathEachStep();
+            ab = true;
+            UpdateFeedbackUnderneathEachStep();
+        }
     }
     public void InstantiateFeedbackUnderneathEachStep()
     {
@@ -86,7 +90,7 @@ public class FeedbackManager : MonoBehaviour
             if (feedbackCounters[i] > 2)
                 if (i == 3)
                     stillNeedsFeedback = false;
-                continue;
+            continue;
             break;
         }
     }
