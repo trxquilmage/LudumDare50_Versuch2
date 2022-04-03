@@ -12,7 +12,7 @@ public class BeatManager : MonoBehaviour
     float startingTime;
     float lastBeatTime;
     [SerializeField] [Range(0, 1)] float isOnBeatTolerance = 0;
-    [SerializeField] [Range(0, 10)] int gapBetweenSteps = 2;
+    [Range(0, 10)] public int gapBetweenSteps = 2;
     int nextBeatWithStep =1;
     int beats;
     
