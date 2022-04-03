@@ -99,6 +99,7 @@ public class Stepmanager : MonoBehaviour
         stepsSpawned += 1;
         whichObstacleToSpawn(step);
         FeedbackManager.instance.SetFeedbackForStep(step);
+        FeedbackManager.instance.SetCurrentStep(step);
     }
 
     public void CheckIfShouldRespawn(Step step)
