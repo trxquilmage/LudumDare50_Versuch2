@@ -75,12 +75,12 @@ public class BeatManager : MonoBehaviour
     public bool IsStepOnBeat(float time) 
     {
         float targetBeatTime = startingTime+(nextBeatWithStep*beatLength);
-        return IsOnBeat(targetBeatTime);
+        return IsOnBeat(targetBeatTime,time);
     }
 
-    public bool IsOnBeat(float targetBeatTime) 
+    public bool IsOnBeat(float targetBeatTime, float time) 
     {
-        float currentTime = Time.time - startingTime;
+        float currentTime = time - startingTime;
         if (currentTime >= targetBeatTime - isOnBeatTolerance || currentTime <= targetBeatTime - beatLength * beatsProStep + isOnBeatTolerance)
         {
             Debug.Log("IsOnBeat");
