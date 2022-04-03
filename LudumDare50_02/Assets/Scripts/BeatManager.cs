@@ -71,7 +71,7 @@ public class BeatManager : MonoBehaviour
             float timeUntilNextStep = (beatLength * beatsProStep) - timeSinceLastStep;
             //Debug.Log(timeUntilNextStep);
             //Debug.Log(InputManager.instance.name);
-            InputManager.instance.SignalNextBeat(Stepmanager.Instance.GetnextInput(), timeUntilNextStep);
+            //InputManager.instance.SignalNextBeat(Stepmanager.Instance.GetnextInput(), timeUntilNextStep);
 
         }
     }

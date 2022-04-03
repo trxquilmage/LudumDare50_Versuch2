@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class FeedbackImage : MonoBehaviour
 {
-    [SerializeField] Sprite[] feedbackQTEImages;
+    public Sprite[] feedbackQTEImages;
     Image image;
-    int[] feedbackCounters = new int[4];
     InputManager.Inputs nextInput;
     bool needsInput, giveFeedback = true;
     private void Awake()
@@ -16,9 +15,8 @@ public class FeedbackImage : MonoBehaviour
     }
     public void SwitchImageAndResetTimer(InputManager.Inputs inputs)
     {
-        int index = (InputNeedsFeedback(inputs)) ? (int)inputs : 4;
         StartCoroutine(LerpAlpha(0, 0.7f, 0.2f));
-        image.sprite = feedbackQTEImages[index];
+        image.sprite = feedbackQTEImages[(int)inputs];
         nextInput = inputs;
         needsInput = true;
     }
@@ -32,33 +30,6 @@ public class FeedbackImage : MonoBehaviour
         else // pressed the wrong button
         {
 
-        }
-    }
-    bool InputNeedsFeedback(InputManager.Inputs inputs)
-    {
-        if (giveFeedback)
-        {
-            feedbackCounters[(int)inputs]++;
-            if (feedbackCounters[(int)inputs] > 2)
-            {
-                CheckIfAllFeedbackIsGiven();
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-    void CheckIfAllFeedbackIsGiven()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            if (feedbackCounters[i] > 2)
-            {
-                if (i == 3)
-                    giveFeedback = false;
-                continue;
-            }
-            break;
         }
     }
     void HighlightAndVanish()
