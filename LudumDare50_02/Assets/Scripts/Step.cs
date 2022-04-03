@@ -15,4 +15,10 @@ public class Step : MonoBehaviour
     {
         
     }
+    private void LateUpdate()
+    {
+        Stepmanager.Instance.CheckIfShouldRespawn(this);
+    }
+
+   
 }
