@@ -50,30 +50,32 @@ public class InputManager : MonoBehaviour
     {
         controls = new Controls();
         controls.Enable();
-        controls.MovementPrompts.Left.performed += context => DoAction(Inputs.Left);
-        controls.MovementPrompts.Right.performed += context => DoAction(Inputs.Right);
-        controls.MovementPrompts.Jump.performed += context => DoAction(Inputs.Jump);
-        controls.MovementPrompts.Duck.performed += context => DoAction(Inputs.Duck);
+        controls.MovementPrompts.Left.performed += context => DoAction(Inputs.Left, context.time);
+        controls.MovementPrompts.Right.performed += context => DoAction(Inputs.Right, context.time);
+        controls.MovementPrompts.Jump.performed += context => DoAction(Inputs.Jump, context.time);
+        controls.MovementPrompts.Duck.performed += context => DoAction(Inputs.Duck, context.time);
     }
     void AssignValues()
     {
         currentPossibleKeys[Inputs.Duck] = true;
         currentPossibleKeys[Inputs.Jump] = true;
     }
-    void DoAction(Inputs inputs)
+    void DoAction(Inputs inputs, double time)
     {
         SetLastPressed(inputs);
         if (PressedCorrectKey(inputs))
         {
             feedbackImage.HighlightIfActiveBeat(inputs);
-            CompareToBeatTime(inputs);
+            CompareToBeatTime(inputs, (float)time);
         }
     }
-    void CompareToBeatTime(Inputs inputs)
+    void CompareToBeatTime(Inputs inputs, float time)
     {
-        //if (BeatManager.instance.IsOnBeat())
-        //Debug.Log("Correct Key -> Is On Beat!");
-        //Player.ContinueWalking();
+        if (BeatManager.instance.IsStepOnBeat(time))
+        {
+            Debug.Log("Correct Key -> Is On Beat!");
+            //Player.ContinueWalking();
+        }
     }
     bool PressedCorrectKey(Inputs inputs)
     {
