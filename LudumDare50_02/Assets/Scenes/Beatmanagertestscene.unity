@@ -999,42 +999,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: maxBeatBetweenVoiceLine
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: minBeatBetweenVoiceLine
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[0]
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[1]
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[2]
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[3]
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[4]
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[5]
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: soundLayerSteps.Array.data[6]
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 8771682010175288267, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
       propertyPath: m_RootOrder
       value: 3
