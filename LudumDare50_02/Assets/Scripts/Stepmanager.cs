@@ -35,7 +35,7 @@ public class Stepmanager : MonoBehaviour
     {
         Quaternion quaternion = Quaternion.LookRotation(endpoint.position - startingPoint.position);
         startingPoint.rotation = quaternion;
-        escalatorLength = (Mathf.FloorToInt(Vector3.Distance(startingPoint.position, endpoint.position) / stepOffset) * stepOffset)-1;
+        escalatorLength = (Mathf.FloorToInt(Vector3.Distance(startingPoint.position, endpoint.position) / stepOffset) * stepOffset);
         SpawnAllsteps();
     }
 
@@ -70,7 +70,9 @@ public class Stepmanager : MonoBehaviour
 
     void MoveallSteps()
     {
-        Vector3 velocity = startingPoint.forward * (escalatorLength * BeatManager.instance.BPM / (stepOffset * 60 * BeatManager.instance.beatsProStep));
+        float BPS = BeatManager.instance.BPM / 60;
+        
+        Vector3 velocity = startingPoint.forward * BPS * stepOffset/ BeatManager.instance.beatsProStep;
         foreach (Step step in steps)
         {
             MoveStep(step, velocity);
