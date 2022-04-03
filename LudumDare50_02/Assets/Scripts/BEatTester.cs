@@ -7,7 +7,7 @@ public class BEatTester : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
      
-            BeatManager.instance.IsStepOnBeat();
+      
         
     }
 }

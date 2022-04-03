@@ -92,7 +92,7 @@ public class Stepmanager : MonoBehaviour
         step.transform.position = Respawnpoint;
         steps.Remove(step);
         steps.Add(step);
-        BeatManager.instance.IsStepOnBeat();
+       // BeatManager.instance.IsStepOnBeat();
         stepsSpawned += 1;
         whichObstacleToSpawn(step);
 

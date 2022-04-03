@@ -72,7 +72,7 @@ public class BeatManager : MonoBehaviour
 
 
 
-    public bool IsStepOnBeat() 
+    public bool IsStepOnBeat(float time) 
     {
         float targetBeatTime = startingTime+(nextBeatWithStep*beatLength);
         return IsOnBeat(targetBeatTime);
