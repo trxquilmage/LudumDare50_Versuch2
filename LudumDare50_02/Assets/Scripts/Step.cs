@@ -5,6 +5,7 @@ using UnityEngine;
 public class Step : MonoBehaviour
 {
     List<GameObject> Obstacles;
+    public InputManager.Inputs input;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,9 @@ public class Step : MonoBehaviour
             {
                 Destroy(Obstacles[i]);
             }
+
         }
+        input = 0;
     }
     public void AddObstacle(GameObject obstacle)
     {

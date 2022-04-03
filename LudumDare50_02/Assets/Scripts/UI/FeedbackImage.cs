@@ -8,15 +8,16 @@ public class FeedbackImage : MonoBehaviour
     [SerializeField] Sprite[] feedbackQTEImages;
     Image image;
     InputManager.Inputs nextInput;
-    bool needsInput;
+    bool needsInput, giveFeedback = true;
     private void Awake()
     {
         image = GetComponent<Image>();
     }
     public void SwitchImageAndResetTimer(InputManager.Inputs inputs)
     {
+        int index = (InputNeedsFeedback()) ? (int)inputs : 4;
         StartCoroutine(LerpAlpha(0, 0.7f, 0.2f));
-        image.sprite = feedbackQTEImages[(int)inputs];
+        image.sprite = feedbackQTEImages[index];
         nextInput = inputs;
         needsInput = true;
     }
@@ -31,6 +32,14 @@ public class FeedbackImage : MonoBehaviour
         {
 
         }
+    }
+    bool InputNeedsFeedback()
+    {
+        if (giveFeedback)
+        {
+            return true;
+        }
+        return false;
     }
     void HighlightAndVanish()
     {

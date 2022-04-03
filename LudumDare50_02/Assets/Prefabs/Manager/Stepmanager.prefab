@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6783870420513640213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4775799565870927536}
+  - component: {fileID: 1535727765449929628}
+  m_Layer: 0
+  m_Name: Stepmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4775799565870927536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783870420513640213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535727765449929628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783870420513640213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d75b17ee6dde44888c2c3c3612340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentOfStairs: {fileID: 0}
+  stepPrefab: {fileID: 5164173051006762354, guid: 1fc2c7cf0b3734949bd157d419ae886b, type: 3}
+  steps:
+  - {fileID: 0}
+  startingPoint: {fileID: 0}
+  endpoint: {fileID: 0}
+  stepOffset: 1.5
+  ObstaclePrefabs:
+  - {fileID: 949259346556448983, guid: 8bb4a83d8c454bf498e9c3c47d771129, type: 3}
+  - {fileID: 6693834374200981218, guid: ed49e50c371a6bb4b94783607973112e, type: 3}
+  ObstacleOffsets:
+  - {x: 0, y: 2.3, z: 0.2}
+  - {x: 0, y: 2.3, z: 0.2}
