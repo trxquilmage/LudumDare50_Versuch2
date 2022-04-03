@@ -22,8 +22,7 @@ public class InputManager : MonoBehaviour
 
     public void SignalNextBeat(Inputs inputs, float timeTilHit)
     {
-        if (usesLeftAndRight)
-            ManagePossibleKeyList();
+        ManagePossibleKeyList(inputs);
         PortrayFeedback(inputs, timeTilHit);
     }
 
@@ -35,16 +34,15 @@ public class InputManager : MonoBehaviour
     {
         AssignInputTriggers();
         AssignValues();
-        SignalNextBeat(Inputs.Duck, 2f);
     }
     void AssignSingleton()
     {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (instance != null)
         {
             Debug.LogWarning("You have more than one InputManager in scene");
         }
-    #endif
+#endif
     }
     void AssignInputTriggers()
     {
@@ -57,8 +55,8 @@ public class InputManager : MonoBehaviour
     }
     void AssignValues()
     {
-        currentPossibleKeys[Inputs.Duck] = true;
-        currentPossibleKeys[Inputs.Jump] = true;
+        currentPossibleKeys[Inputs.Left] = true;
+        currentPossibleKeys[Inputs.Right] = true;
     }
     void DoAction(Inputs inputs, double time)
     {
@@ -85,17 +83,37 @@ public class InputManager : MonoBehaviour
     {
         lastPressedKey = lastInput;
     }
-    void ManagePossibleKeyList()
+    void ManagePossibleKeyList(Inputs inputs)
     {
-        if ((int)lastPressedKey > 1 || lastStepWasWrong)
+        if ((int)inputs < (int)Inputs.Jump)
         {
-            currentPossibleKeys[Inputs.Left] = true;
-            currentPossibleKeys[Inputs.Right] = true;
+            if ((int)lastPressedKey > (int)Inputs.Right
+            || lastStepWasWrong)
+            {
+                currentPossibleKeys[Inputs.Left] = true;
+                currentPossibleKeys[Inputs.Right] = true;
+            }
+            else
+            {
+                currentPossibleKeys[Inputs.Left] = lastPressedKey != Inputs.Left;
+                currentPossibleKeys[Inputs.Right] = lastPressedKey != Inputs.Right;
+            }
+            currentPossibleKeys[Inputs.Jump] = false;
+            currentPossibleKeys[Inputs.Duck] = false;
         }
-        else
+        else if ((int)inputs == (int)Inputs.Jump)
         {
-            currentPossibleKeys[Inputs.Left] = lastPressedKey != Inputs.Left;
-            currentPossibleKeys[Inputs.Right] = lastPressedKey != Inputs.Right;
+            currentPossibleKeys[Inputs.Left] = false;
+            currentPossibleKeys[Inputs.Right] = false;
+            currentPossibleKeys[Inputs.Jump] = true;
+            currentPossibleKeys[Inputs.Duck] = false;
+        }
+        else if ((int)inputs == (int)Inputs.Duck)
+        {
+            currentPossibleKeys[Inputs.Left] = false;
+            currentPossibleKeys[Inputs.Right] = false;
+            currentPossibleKeys[Inputs.Jump] = false;
+            currentPossibleKeys[Inputs.Duck] = true;
         }
     }
     void PortrayFeedback(Inputs inputs, float timeTilHit)
