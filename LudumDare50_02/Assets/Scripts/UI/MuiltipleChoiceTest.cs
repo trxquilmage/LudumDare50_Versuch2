@@ -12,7 +12,8 @@ public class MuiltipleChoiceTest : MonoBehaviour
     [SerializeField] Text optionB;
     [SerializeField] Text optionC;
     public List<Question> questions = new List<Question>();
-    public float startShowingQuizTime;
+    [HideInInspector] public float startShowingQuizTime;
+    public float startShowingQuizDelay;
     public float timeToAnswer;
     public float questionCooldown;
     float quizStartTime;

@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject ingameUI;
     [SerializeField] GameObject mainMenuUI;
+    [SerializeField] MuiltipleChoiceTest quiz;
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +24,6 @@ public class UIManager : MonoBehaviour
     {
         ingameUI.SetActive(true);
         mainMenuUI.SetActive(false);
+        quiz.startShowingQuizTime = Time.time + quiz.startShowingQuizDelay;
     }
 }

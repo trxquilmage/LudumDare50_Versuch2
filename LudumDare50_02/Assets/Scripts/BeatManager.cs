@@ -103,27 +103,27 @@ public class BeatManager : MonoBehaviour
 
     }
 
-    void CheckForSoundlayer() 
+    void CheckForSoundlayer()
     {
-        if(SoundManager.soundManagerInstance.layerState < 6 && beats >= soundLayerSteps[SoundManager.soundManagerInstance.layerState] ) 
+        if (SoundManager.soundManagerInstance.layerState < 6 && beats >= soundLayerSteps[SoundManager.soundManagerInstance.layerState])
         {
             SoundManager.soundManagerInstance.AddMusicLayer();
         }
     }
 
-    void CheckForVoiceLine() 
+    void CheckForVoiceLine()
     {
-        if (beatOfnextVoiceLine == 0) 
+        if (beatOfnextVoiceLine == 0)
         {
             beatOfnextVoiceLine = Random.Range(minBeatBetweenVoiceLine, maxBeatBetweenVoiceLine);
         }
-        else if(beats>=beatOfnextVoiceLine) 
+        else if (beats >= beatOfnextVoiceLine)
         {
             SoundManager.soundManagerInstance.PlayVoiceLine();
             beatOfnextVoiceLine += Random.Range(minBeatBetweenVoiceLine, maxBeatBetweenVoiceLine);
             Debug.Log("voiceline");
         }
-    
+
     }
 
 }
