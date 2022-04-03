@@ -143,7 +143,5 @@ public class Stepmanager : MonoBehaviour
         InputManager.Inputs input = steps[index].input;
         return input;
 
-
-
     }
 }

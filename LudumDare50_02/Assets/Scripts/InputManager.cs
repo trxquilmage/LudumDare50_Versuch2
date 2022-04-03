@@ -39,10 +39,11 @@ public class InputManager : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (instance != null)
-        {
+        {            
             Debug.LogWarning("You have more than one InputManager in scene");
         }
 #endif
+        instance = this;
     }
     void AssignInputTriggers()
     {
