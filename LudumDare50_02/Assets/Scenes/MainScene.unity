@@ -1137,10 +1137,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8771682010175288266, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
-      propertyPath: beatsProStep
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8771682010175288267, guid: 3532822363f01284daac1012f1a44f1a, type: 3}
       propertyPath: m_RootOrder
       value: 4
