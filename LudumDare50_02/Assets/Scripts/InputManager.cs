@@ -23,7 +23,8 @@ public class InputManager : MonoBehaviour
     public void SignalNextBeat(Inputs inputs, float timeTilHit)
     {
         ManagePossibleKeyList(inputs);
-        PortrayFeedback(inputs, timeTilHit);
+
+        PortrayFeedback(GetFirstPossibleKey(), timeTilHit);
     }
 
     void Awake()
@@ -39,7 +40,7 @@ public class InputManager : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (instance != null)
-        {            
+        {
             Debug.LogWarning("You have more than one InputManager in scene");
         }
 #endif
@@ -61,7 +62,6 @@ public class InputManager : MonoBehaviour
     }
     void DoAction(Inputs inputs, double time)
     {
-        SetLastPressed(inputs);
         if (PressedCorrectKey(inputs))
         {
             feedbackImage.HighlightIfActiveBeat(inputs);
@@ -80,16 +80,11 @@ public class InputManager : MonoBehaviour
     {
         return currentPossibleKeys[inputs];
     }
-    void SetLastPressed(Inputs lastInput)
-    {
-        lastPressedKey = lastInput;
-    }
     void ManagePossibleKeyList(Inputs inputs)
     {
         if ((int)inputs < (int)Inputs.Jump)
         {
-            if ((int)lastPressedKey > (int)Inputs.Right
-            || lastStepWasWrong)
+            if ((int)lastPressedKey > (int)Inputs.Right)
             {
                 currentPossibleKeys[Inputs.Left] = true;
                 currentPossibleKeys[Inputs.Right] = true;
@@ -116,6 +111,18 @@ public class InputManager : MonoBehaviour
             currentPossibleKeys[Inputs.Jump] = false;
             currentPossibleKeys[Inputs.Duck] = true;
         }
+
+        lastPressedKey = GetFirstPossibleKey();
+    }
+    Inputs GetFirstPossibleKey()
+    {
+        for (int i = 0; i < 4; i++)
+            if (currentPossibleKeys[(Inputs)i])
+                return (Inputs)i;
+#if UNITY_EDITOR
+        Debug.LogWarning("Waring: There was no Key found here!");
+#endif
+        return Inputs.Left;
     }
     void PortrayFeedback(Inputs inputs, float timeTilHit)
     {
