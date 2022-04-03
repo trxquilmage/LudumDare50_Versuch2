@@ -54,5 +54,5 @@ MonoBehaviour:
   - {fileID: 949259346556448983, guid: 8bb4a83d8c454bf498e9c3c47d771129, type: 3}
   - {fileID: 6693834374200981218, guid: ed49e50c371a6bb4b94783607973112e, type: 3}
   ObstacleOffsets:
-  - {x: 0, y: 2.3, z: 0.2}
+  - {x: 0, y: 1, z: 0.3}
   - {x: 0, y: 2.3, z: 0.2}
