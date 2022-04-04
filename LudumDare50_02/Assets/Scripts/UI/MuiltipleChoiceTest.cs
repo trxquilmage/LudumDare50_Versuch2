@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MuiltipleChoiceTest : MonoBehaviour
 {
     [SerializeField] GameObject popQuiz;
     [SerializeField] RectTransform timeBar;
-    [SerializeField] Text question;
-    [SerializeField] Text optionA;
-    [SerializeField] Text optionB;
-    [SerializeField] Text optionC;
+    [SerializeField] TextMeshProUGUI question;
+    [SerializeField] TextMeshProUGUI optionA;
+    [SerializeField] TextMeshProUGUI optionB;
+    [SerializeField] TextMeshProUGUI optionC;
     public List<Question> questions = new List<Question>();
     [HideInInspector] public float startShowingQuizTime;
     public float startShowingQuizDelay;
