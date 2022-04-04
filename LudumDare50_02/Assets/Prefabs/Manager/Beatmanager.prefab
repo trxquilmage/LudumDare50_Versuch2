@@ -48,7 +48,7 @@ MonoBehaviour:
   isOnBeatTolerance: 0
   beatsProStep: 4
   beats: 0
-  soundLayerSteps: 140000003c000000c80000002c0100009001000058020000e8030000
+  soundLayerSteps: 140000003c000000c80000002c0100009001000044020000e8030000
   minBeatBetweenVoiceLine: 100
   maxBeatBetweenVoiceLine: 150
   beatOfnextVoiceLine: 0
