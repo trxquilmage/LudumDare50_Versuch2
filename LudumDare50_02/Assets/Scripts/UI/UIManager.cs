@@ -46,10 +46,10 @@ public class UIManager : MonoBehaviour
         transform.position = gotoposition;
         yield return new WaitForSeconds(5f);
         elapsedTime = 0;
-        waitTime = 80f;
+        waitTime = 200f;
         while (Camera.main.fieldOfView < 81)
         {
-            Camera.main.fieldOfView = Mathf.Lerp(35, 81, (elapsedTime / waitTime));
+            Camera.main.fieldOfView = Mathf.Lerp(35, 120, (elapsedTime / waitTime));
             elapsedTime += Time.deltaTime;
             yield return null;
         }

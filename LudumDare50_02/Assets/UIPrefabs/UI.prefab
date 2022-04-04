@@ -2023,9 +2023,9 @@ MonoBehaviour:
     optionB: I REALLY dont care!
     optionC: Ja.
   startShowingQuizTime: 2
-  startShowingQuizDelay: 150
-  timeToAnswer: 10
-  questionCooldown: 8
+  startShowingQuizDelay: 300
+  timeToAnswer: 15
+  questionCooldown: 20
 --- !u!1 &5021412560121673662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,8 +2221,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'The first question ist the following: What ist a Schnegge?'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1579cddde0d65fe4ebe8d958c97dcc9b, type: 2}
-  m_sharedMaterial: {fileID: -3772465278054496920, guid: 1579cddde0d65fe4ebe8d958c97dcc9b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f32520a6f300a8b43bee3695afb27e27, type: 2}
+  m_sharedMaterial: {fileID: 3659365553468644247, guid: f32520a6f300a8b43bee3695afb27e27, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2246,19 +2246,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.8
-  m_fontSizeBase: 14.8
+  m_fontSize: 9.9
+  m_fontSizeBase: 9.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -41.3
+  m_lineSpacing: -80.4
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

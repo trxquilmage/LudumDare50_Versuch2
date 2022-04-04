@@ -13,7 +13,7 @@ public class MuiltipleChoiceTest : MonoBehaviour
     [SerializeField] TextMeshProUGUI optionB;
     [SerializeField] TextMeshProUGUI optionC;
     public List<Question> questions = new List<Question>();
-    [HideInInspector] public float startShowingQuizTime;
+    [HideInInspector] public float startShowingQuizTime = 0;
     public float startShowingQuizDelay;
     public float timeToAnswer;
     public float questionCooldown;
