@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f3072b9f628e4874aa31a90b9b8f7063
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Republica Minor
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 136b68e3bb186d34a948a1cfc6c3051b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

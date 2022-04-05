@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a5fa017c37a034495236ffbbecdeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 340
-  isOnBeatTolerance: 0.2
+  BPM: 170
+  startingTime: 0
+  isOnBeatTolerance: 0
   beatsProStep: 4
   beats: 0
-  soundLayerSteps: 3200000064000000c80000002c010000900100005802000020030000
+  soundLayerSteps: 140000003c000000c80000002c0100009001000044020000e8030000
   minBeatBetweenVoiceLine: 100
   maxBeatBetweenVoiceLine: 150
   beatOfnextVoiceLine: 0

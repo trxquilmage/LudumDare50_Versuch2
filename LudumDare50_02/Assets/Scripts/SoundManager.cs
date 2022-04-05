@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
 
     // LAYER
     [SerializeField] AudioMixerSnapshot[] layers;
+    [SerializeField] AudioSource[] layerSources;
 
     [SerializeField] float transitionTime;
 
@@ -62,6 +63,9 @@ public class SoundManager : MonoBehaviour
         layerState++;
 
         layers[layerState].TransitionTo(transitionTime);
+        layerSources[layerState-1].Play();
+
+        PlayVoiceLine();
     }
     public void ResetMusicLayer()
     {
